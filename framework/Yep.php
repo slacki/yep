@@ -28,6 +28,8 @@ class Yep {
         private static $_coreClasses = array(
                 'Application' => 'base/Application.php',
                 'HttpRequest' => 'base/HttpRequest.php',
+                'Router' => 'base/Router.php',
+                'Config' => 'base/Config.php',
         );
 
         /**
