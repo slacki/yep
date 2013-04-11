@@ -70,7 +70,18 @@ class Router {
                         if ($routeCount <= 2) {
                                 $this->_params = null;
                         } elseif ($routeCount > 2) {
-                                // here i stucked. :D
+                                foreach ($this->_route as $key => $val) {
+                                        if ($key != 0 && $key != 1) {
+                                                // even - params
+                                                // odd - values
+                                                // [0] site, [1] index, [2] param1, [3] value1, ...
+                                                if (($key % 2) == 0) {
+                                                        $this->_params[$val] = '';
+                                                } else {
+                                                        $this->_params[count($this->_params) - 1] = $val;
+                                                }
+                                        }
+                                }
                         }
                 }
         }

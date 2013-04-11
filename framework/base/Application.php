@@ -16,7 +16,7 @@ class Application {
 
         public function __construct($config) {
                 Yep::setApplication($this);
-                $this->_configure($config);
+                $this->_configure(require $config);
         }
 
         private function _configure($config) {
