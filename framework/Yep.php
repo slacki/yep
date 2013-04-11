@@ -31,8 +31,6 @@ class Yep {
                 'Router' => 'base/Router.php',
                 'Config' => 'base/Config.php',
         );
-        
-        private $configuration;
 
         /**
          * Creates an application.
@@ -59,7 +57,7 @@ class Yep {
         }
 
         /**
-         * @return An application singleton.
+         * @return object The application singleton.
          */
         public static function app() {
                 return self::$_app;

@@ -16,6 +16,13 @@ class Application {
 
         public function __construct($config) {
                 Yep::setApplication($this);
+                $this->_configure($config);
+        }
+
+        private function _configure($config) {
+                foreach ($config as $key => $val) {
+                        $this->$key = $val;
+                }
         }
 
         public function __get($name) {
