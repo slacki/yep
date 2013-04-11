@@ -14,11 +14,8 @@
  */
 class Application {
 
-        public $config;
-
         public function __construct($config) {
                 Yep::setApplication($this);
-                $this->config = new Config($config);
         }
 
         public function __get($name) {

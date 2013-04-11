@@ -31,6 +31,8 @@ class Yep {
                 'Router' => 'base/Router.php',
                 'Config' => 'base/Config.php',
         );
+        
+        private $configuration;
 
         /**
          * Creates an application.
@@ -61,6 +63,15 @@ class Yep {
          */
         public static function app() {
                 return self::$_app;
+        }
+        
+        public static function getConfiguration($key) {
+                if (isset($this->config[$key])) {
+                        return $this->config[$key];
+                } else {
+                        return null;
+                        // NOTE: or exception maybe, i dont know yet.
+                }
         }
 
         /**
