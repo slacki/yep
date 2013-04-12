@@ -84,6 +84,19 @@ class Router {
                                 }
                         }
                 }
+                $_GET + $this->_params;
+        }
+        
+        private function _execute() {
+                // getting names
+                $_controller = $this->_controller;
+                $_action = $this->_action;
+                
+                $ctrpath = Yep::app()->basePath . '/application/controllers/' . $_controller;
+                require $ctrpath;
+                $controller = new $_controller();
+                $controller->$_action();
+                
         }
 
 }

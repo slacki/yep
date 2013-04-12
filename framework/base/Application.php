@@ -35,7 +35,7 @@ class Application {
         }
 
         public function run() {
-                
+                new Router(new HttpRequest());
         }
 
         public function end($status = 0) {

@@ -1,0 +1,1 @@
+[+] Ładowanie Controllerów / modyfikacja autoloadu tak, aby ładowała controllery modele i widoki jezeli nie sa zdefiniowane w coreClasses.

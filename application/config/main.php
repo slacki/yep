@@ -1,7 +1,8 @@
 <?php
 
 return array(
-        'application' => array(
-                'name' => 'My awesome application written in my own MVC framework, bitches!',
-        ),
+        'basePath' => dirname(__FILE__) . '/../../',
+        'name' => 'My own app in new framework, bitches!',
+        'defaultController' => 'SiteController',
+        'defaultAction' => 'index',
 );
