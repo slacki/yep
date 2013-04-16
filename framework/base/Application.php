@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Application class file
  * 
@@ -16,10 +15,11 @@ class Application {
 
         public function __construct($config) {
                 Yep::setApplication($this);
-                $this->_configure(require $config);
+                $this->_configure($config);
         }
 
         private function _configure($config) {
+                $config = require $config;
                 foreach ($config as $key => $val) {
                         $this->$key = $val;
                 }
@@ -42,8 +42,7 @@ class Application {
                 exit($status);
         }
 
-        public function getId() {
-                return 1500100900;
-        }
-
+        // abstract function getSomething();
+        // getting components and other shit will be done here
+        
 }

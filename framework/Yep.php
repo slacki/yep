@@ -1,16 +1,10 @@
 <?php
-
 /**
  * Yep class file
  * 
  * @author Kacper Czochara <kacperczochara@gmail.com>
  * @copyright Copyright (C) 2013 Kacper Czochara
  */
-
-/**
- * Defines framework directory path
- */
-defined('YEP_PATH') or define('YEP_PATH', dirname(__FILE__));
 
 /**
  * Yep is a helper class serving common framework functionalities.
@@ -30,6 +24,7 @@ class Yep {
                 'HttpRequest' => 'base/HttpRequest.php',
                 'Router' => 'base/Router.php',
                 'Config' => 'base/Config.php',
+                'Controller' => 'base/Controller.php',
         );
 
         /**
@@ -62,13 +57,13 @@ class Yep {
         public static function app() {
                 return self::$_app;
         }
-        
+
         public static function getConfiguration($key) {
                 if (isset($this->config[$key])) {
                         return $this->config[$key];
                 } else {
                         return null;
-                        // NOTE: or exception maybe, i dont know yet.
+                        // NOTE: or exception maybe, i dont know yet
                 }
         }
 
@@ -80,13 +75,15 @@ class Yep {
          */
         public static function autoload($className) {
                 // use include so that the error PHP file may appear
+                $controllerPath = BASE_PATH . '/application/controllers/' . $className . '.php';
                 if (isset(self::$_coreClasses[$className])) {
                         include(self::$_coreClasses[$className]);
+                } elseif (isset($controllerPath)) {
+                        include($controllerPath);
                 } else {
                         throw new Exception('Requested class does not exist or is not set in 
                                 $_coreClasses');
                 }
-                return true;
         }
 
 }

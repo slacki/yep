@@ -1,1 +1,2 @@
-[+] Ładowanie Controllerów / modyfikacja autoloadu tak, aby ładowała controllery modele i widoki jezeli nie sa zdefiniowane w coreClasses.
+[+/done] Ładowanie Controllerów / modyfikacja autoloadu tak, aby ładowała controllery modele i widoki jezeli nie sa zdefiniowane w coreClasses.
+[+] Sprawdzanie co jest nie tak z ładowaniem kontrolerów i akcji z route.

@@ -5,7 +5,7 @@ class Router {
         private $_route;
         private $_controller;
         private $_action;
-        private $_params;
+        private $_params = array();
 
         public function __construct(HttpRequest $request) {
                 $this->_route = $this->_parseRoute($request->route);
@@ -64,7 +64,7 @@ class Router {
 
         private function _getParams() {
                 if ($this->_route == null) {
-                        $this->_params = null;
+                        $this->_params = array();
                 } else {
                         $routeCount = count($this->_route);
                         if ($routeCount <= 2) {
@@ -84,18 +84,16 @@ class Router {
                                 }
                         }
                 }
-                $_GET + $this->_params;
+                foreach ($this->_params as $key => $val) {
+                        $_GET[$key] = $val;
+                }
         }
         
         private function _execute() {
                 // getting names
-                $_controller = $this->_controller;
-                $_action = $this->_action;
-                
-                $ctrpath = Yep::app()->basePath . '/application/controllers/' . $_controller;
-                require $ctrpath;
-                $controller = new $_controller();
-                $controller->$_action();
+                $controller = $this->_controller;
+                $action = $this->_action;
+                $controller->$action();
                 
         }
 
