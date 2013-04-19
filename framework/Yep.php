@@ -58,6 +58,10 @@ class Yep {
                 return self::$_app;
         }
 
+        /**
+         * @param string $key
+         * @return configuration for feature specified in $key
+         */
         public static function getConfiguration($key) {
                 if (isset($this->config[$key])) {
                         return $this->config[$key];

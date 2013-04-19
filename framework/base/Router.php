@@ -12,8 +12,7 @@ class Router {
                 $this->_getController();
                 $this->_getAction();
                 $this->_getParams();
-
-                $this->_execute();
+                $this->_callControllerMethod();
         }
 
         private function _parseRoute($route) {
@@ -36,8 +35,9 @@ class Router {
                                         Check your configuration file.');
                         }
                 } else {
-                        if (class_exists($this->_route[0])) {
-                                $this->_controller = new $route[0]();
+                        $controllerName = ucfirst($this->_route[0]) . 'Controller';
+                        if (class_exists($controllerName)) {
+                                $this->_controller = new $controllerName();
                         } else {
                                 throw new Exception('Specified controller does not exist');
                         }
@@ -45,8 +45,8 @@ class Router {
         }
 
         private function _getAction() {
+                $defaultAction = 'action' . ucfirst(Yep::app()->defaultAction);
                 if ($this->_route == null) {
-                        $defaultAction = 'action' . ucfirst(Yep::app()->defaultAction);
                         if (method_exists($this->_controller, $defaultAction)) {
                                 $this->_action = $defaultAction;
                         } else {
@@ -54,16 +54,16 @@ class Router {
                                         Check your configuration file.');
                         }
                 } else {
-                        if (method_exists($this->_controller, $this->_route[1])) {
+                        if (method_exists($this->_controller, @$this->_route[1])) {
                                 $this->_action = $this->_route[1];
                         } else {
-                                throw new Exception('Specified action does not exist');
+                                $this->_action = $defaultAction;
                         }
                 }
         }
 
         private function _getParams() {
-                if ($this->_route == null) {
+                if ($this->_route == null || $this->_action == null) {
                         $this->_params = array();
                 } else {
                         $routeCount = count($this->_route);
@@ -82,19 +82,17 @@ class Router {
                                                 }
                                         }
                                 }
+                                foreach ($this->_params as $key => $val) {
+                                        $_GET[$key] = $val;
+                                }
                         }
                 }
-                foreach ($this->_params as $key => $val) {
-                        $_GET[$key] = $val;
-                }
         }
-        
-        private function _execute() {
-                // getting names
+
+        private function _callControllerMethod() {
                 $controller = $this->_controller;
                 $action = $this->_action;
                 $controller->$action();
-                
         }
 
 }
