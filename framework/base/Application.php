@@ -24,6 +24,14 @@ class Application {
                         $this->$key = $val;
                 }
         }
+        
+        public function run() {
+                new Router(new HttpRequest());
+        }
+
+        public function end($status = 0) {
+                exit($status);
+        }
 
         public function __get($name) {
                 $method = 'get' . $name;
@@ -34,15 +42,8 @@ class Application {
                 }
         }
 
-        public function run() {
-                new Router(new HttpRequest());
+        public function getDb() {
+                return new Database();
         }
-
-        public function end($status = 0) {
-                exit($status);
-        }
-
-        // abstract function getSomething();
-        // getting components and other shit will be done here
         
 }

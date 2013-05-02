@@ -20,11 +20,13 @@ class Yep {
          * @var array Contains all base framework classes.
          */
         private static $_coreClasses = array(
+                // base
                 'Application' => 'base/Application.php',
                 'HttpRequest' => 'base/HttpRequest.php',
                 'Router' => 'base/Router.php',
-                'Config' => 'base/Config.php',
                 'Controller' => 'base/Controller.php',
+                // components
+                'Database' => 'components/Database.php',
         );
 
         /**
