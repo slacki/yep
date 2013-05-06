@@ -55,9 +55,9 @@ class Router {
                                         Check your configuration file.');
                         }
                 } else {
-                        if (method_exists($this->_controller, @$this->_route[1])) {
-                                $this->_action = $this->_route[1];
-                        } elseif ($this->_route[1] == null) {
+                        if (@method_exists($this->_controller, 'action' . ucfirst($this->_route[1]))) {
+                                $this->_action = 'action' . ucfirst($this->_route[1]);
+                        } elseif (!isset($this->_route[1]) || $this->_route[1] == null) {
                                 if (method_exists($this->_controller, $defaultAction)) {
                                         $this->_action = $defaultAction;
                                 } else {

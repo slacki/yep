@@ -25,6 +25,8 @@ class Yep {
                 'HttpRequest' => 'base/HttpRequest.php',
                 'Router' => 'base/Router.php',
                 'Controller' => 'base/Controller.php',
+                'Model' => 'base/Model.php',
+                'View' => 'base/View.php',
                 // components
                 'Database' => 'components/Database.php',
         );
