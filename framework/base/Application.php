@@ -43,7 +43,7 @@ class Application {
         }
 
         public function getDb() {
-                return new Database();
+                return new Database($this->database->dns, $this->database->username, $this->database->password);
         }
         
 }

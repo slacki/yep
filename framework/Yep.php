@@ -76,7 +76,7 @@ class Yep {
         }
 
         /**
-         * Class autoload loader also known as "Lazy loading".
+         * Autoload method also known as "Lazy loading".
          * This method is provided to be invoked within an __autoload() magic method.
          * @param string $className class name
          * @return boolean whether the class has been loaded successfully
@@ -84,14 +84,20 @@ class Yep {
         public static function autoload($className) {
                 // use include so that the error PHP file may appear
                 $controllerPath = BASE_PATH . '/application/controllers/' . $className . '.php';
+                $modelPath = BASE_PATH . '/application/models/' . $className . '.php';
                 if (isset(self::$_coreClasses[$className])) {
-                        include(self::$_coreClasses[$className]);
-                } elseif (isset($controllerPath)) {
-                        include($controllerPath);
+                        include self::$_coreClasses[$className];
                 } else {
-                        throw new Exception('Requested class does not exist or is not set in 
+                        if (is_file($controllerPath)) {
+                                include $controllerPath;
+                        } elseif (is_file($modelPath)) {
+                                include $modelPath;
+                        } else {
+                                throw new Exception('Requested class does not exist or is not set in 
                                 $_coreClasses');
+                        }
                 }
+                return true;
         }
 
 }
