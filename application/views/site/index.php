@@ -1,1 +1,1 @@
-<h1>index</h1>
+<h1><?php echo $this->param1 . $this->param2; ?></h1>
