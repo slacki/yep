@@ -8,11 +8,9 @@ class SiteController extends Controller {
 			
 			
 			$model = new Login();
-			$data = array(
-				'param1' => 'val1',
-				'param2' => 'val2',
-			);
-			$this->render('site/index', $data);
+                        echo '<pre>';
+                        print_r($model->asd());
+                        
 		}
 		
 		public function actionLogin() {

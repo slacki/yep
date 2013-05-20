@@ -63,19 +63,6 @@ class Yep {
         }
 
         /**
-         * @param string $key
-         * @return configuration for feature specified in $key
-         */
-        public static function getConfiguration($key) {
-                if (isset($this->config[$key])) {
-                        return $this->config[$key];
-                } else {
-                        return null;
-                        // NOTE: or exception maybe, i dont know yet
-                }
-        }
-
-        /**
          * Autoload method also known as "Lazy loading".
          * This method is provided to be invoked within an __autoload() magic method.
          * @param string $className class name

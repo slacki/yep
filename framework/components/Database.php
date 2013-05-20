@@ -1,9 +1,9 @@
 <?php
 
-class Databse extends PDO {
+class Database extends PDO {
         
-        public function __construct($dsn, $username, $passwd, $options) {
-                parent::__construct($dsn, $username, $passwd, $options);
+        public function __construct($dsn, $username, $passwd, $options = null) {
+                parent::__construct($dsn, $username, $passwd, $options = null);
         }
         
 }

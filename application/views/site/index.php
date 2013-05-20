@@ -1,1 +1,1 @@
-<h1><?php echo $this->param1 . $this->param2; ?></h1>
+<h1><?php echo Yep::app()->name; ?></h1>
